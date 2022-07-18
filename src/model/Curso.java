@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Curso {
 
-    private List <Integer> listPerguntas = new ArrayList<>();
+    private List <Pergunta> listPerguntas = new ArrayList<>();
     private String codigo;
     private String nome;
 
@@ -14,11 +14,11 @@ public class Curso {
         this.nome = nome;
     }
 
-    public List<Integer> getListPerguntas() {
+    public List<Pergunta> getListPerguntas() {
         return listPerguntas;
     }
 
-    public void setListPerguntas(List<Integer> listPerguntas) {
+    public void setListPerguntas(List<Pergunta> listPerguntas) {
         this.listPerguntas = listPerguntas;
     }
 
@@ -45,5 +45,12 @@ public class Curso {
                 ", codigo='" + codigo + '\'' +
                 ", nome='" + nome + '\'' +
                 '}';
+    }
+
+    public boolean equals(String codigo) {
+        if (this.getCodigo() == codigo){
+            return true;
+        }
+        return false;
     }
 }
