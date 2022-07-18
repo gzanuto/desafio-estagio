@@ -3,17 +3,17 @@ package model;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Respostas implements Serializable {
+public class Resposta implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public String dia;
-    public int pergcode;
-    public int matricula;
-    public String cursoaluno;
-    public String opcaocode;
+    private String dia;
+    private int pergcode;
+    private String matricula;
+    private String cursoaluno;
+    private String opcaocode;
 
-    public Respostas(String dia, int pergcode, int matricula, String cursoaluno, String opcaocode) {
+    public Resposta(String dia, int pergcode, String matricula, String cursoaluno, String opcaocode) {
 
         this.dia = dia;
         this.pergcode = pergcode;
@@ -39,14 +39,14 @@ public class Respostas implements Serializable {
         this.pergcode = pergcode;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
-
     }
+
     public String getCursoaluno() {
         return cursoaluno;
     }
@@ -65,10 +65,10 @@ public class Respostas implements Serializable {
 
     @Override
     public String toString() {
-        return "Dia da prova: " + dia + ". " +
-                "Código da pergunta: " + pergcode + ". " +
-                "Matrícula do aluno: "  + matricula + ". " +
-                "Curso do Aluno: " + cursoaluno + ". " +
-                "Opção selecionada: " + opcaocode;
+        return "Dia da prova: " + dia + ". \n" +
+                "Código da pergunta: " + pergcode + ". \n" +
+                "Matrícula do aluno: "  + matricula + ". \n" +
+                "Curso do Aluno: " + cursoaluno + ". \n" +
+                "Opção selecionada: " + opcaocode + ". ";
     }
 }
