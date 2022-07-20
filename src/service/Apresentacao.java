@@ -1,14 +1,8 @@
 package service;
 
-import model.Curso;
-import model.Opcao;
-import model.Pergunta;
-import model.Resposta;
+import model.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Apresentacao {
 
@@ -35,8 +29,17 @@ public class Apresentacao {
             System.out.println("\n" + "Perguntas:");
             for(Pergunta p : c.getListPerguntas()){
                 System.out.printf("\n" + p.getPerguntaCodigo() + " - " + p.getPerguntaDesc() + "\n");
-                System.out.println("Total de entrevistados: " + p.getOpcoesRespondidas().size());
-                System.out.println("Resultado" + " | Porcentagem");
+                System.out.println("\nTotal de entrevistados: " + p.getOpcoesRespondidas().size());
+                int respostasCurso = 0;
+                for (Aluno aluno: p.getAlunosParticipantes()) {
+                    if(aluno.getCursoCodigo().equals(c.getCodigo())) {
+                        respostasCurso++;
+                    }
+                }
+                int respostasOutrosCursos = p.getOpcoesRespondidas().size() - respostasCurso;
+                System.out.println("Total de entrevistados do curso: " + respostasCurso);
+                System.out.println("Total de entrevistados de outros cursos: " + respostasOutrosCursos);
+                System.out.println("\nResultado" + " | Porcentagem");
                 HashMap<String, Double> porcentagemOpcaoMarcada = porcentagensRespostasPerguntasPorCurso.get(p.getPerguntaCodigo());
 
                 for(String opcaoMarcada : porcentagemOpcaoMarcada.keySet()) {
@@ -53,7 +56,7 @@ public class Apresentacao {
 
                             System.out.println(opcaoMarcada + " - " + o.getOpcaoDesc()
                                     + " ".repeat(resultadoCabecalho.length() - resultadoPorcentagens.length()) + "| " + porcentagem(porcentagemOpcaoMarcada.get(opcaoMarcada))
-                                    + "\n"
+//                                    + "\n"
                             );
                         }
                     }
@@ -66,8 +69,8 @@ public class Apresentacao {
                     }
 
                 }
-                System.out.printf(" ----------------- ");
             }
+            System.out.printf("--------------------------------------------------------------------------\n");
         }
     }
 
@@ -109,14 +112,16 @@ public class Apresentacao {
     }
 
     private void incluirRespostasNasPerguntas(List<Resposta> listRespostas, Set<Curso> cursos, List<Opcao> listOpcoes) {
-        for (Resposta r : listRespostas) {
-            for(Curso c : cursos) {
-                for(Pergunta p : c.getListPerguntas()){
+        for (Curso c : cursos) {
+            for(Pergunta p : c.getListPerguntas()) {
+                for(Resposta r : listRespostas){
+
 
                     if(r.getOpcaoCodigo().equals("Não Respondida") && r.getPerguntaCodigo() == p.getPerguntaCodigo()) {
                         p.getOpcoesRespondidas().add(new Opcao(p.getPerguntaCodigo(), r.getOpcaoCodigo()));
                     }
                     if (r.getPerguntaCodigo() == p.getPerguntaCodigo()){
+                        p.getAlunosParticipantes().add(new Aluno(r.getMatricula(), r.getCursoAluno()));
                         for(Opcao o: listOpcoes) {
                             if(o.getPerguntaCodigo() == r.getPerguntaCodigo() && o.getOpcaoMarcada().equals(r.getOpcaoCodigo())) {
                                 p.getOpcoesRespondidas().add(o);

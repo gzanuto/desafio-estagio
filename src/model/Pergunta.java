@@ -2,8 +2,7 @@ package model;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Pergunta implements Serializable {
     @Serial
@@ -14,6 +13,7 @@ public class Pergunta implements Serializable {
     private int perguntaCodigo;
     private String perguntaDesc;
     private List <Opcao> opcoesRespondidas = new ArrayList<>();
+    private List<Aluno> alunosParticipantes = new ArrayList<>();
 
     public Pergunta(String cursoCodigo, String cursoNome, int perguntaCodigo, String perguntaDesc) {
         super();
@@ -61,6 +61,14 @@ public class Pergunta implements Serializable {
 
     public void setOpcoesRespondidas(List<Opcao> opcoesRespondidas) {
         this.opcoesRespondidas = opcoesRespondidas;
+    }
+
+    public List<Aluno> getAlunosParticipantes() {
+        return alunosParticipantes;
+    }
+
+    public void setAlunosParticipantes(List<Aluno> alunosParticipantes) {
+        this.alunosParticipantes = alunosParticipantes;
     }
 
     @Override
