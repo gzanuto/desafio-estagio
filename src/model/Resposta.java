@@ -8,18 +8,18 @@ public class Resposta implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String dia;
-    private int pergcode;
+    private int perguntaCodigo;
     private String matricula;
-    private String cursoaluno;
-    private String opcaocode;
+    private String cursoAluno;
+    private String opcaoCodigo;
 
-    public Resposta(String dia, int pergcode, String matricula, String cursoaluno, String opcaocode) {
+    public Resposta(String dia, int perguntaCodigo, String matricula, String cursoAluno, String opcaoCodigo) {
 
         this.dia = dia;
-        this.pergcode = pergcode;
+        this.perguntaCodigo = perguntaCodigo;
         this.matricula = matricula;
-        this.cursoaluno = cursoaluno;
-        this.opcaocode = opcaocode;
+        this.cursoAluno = cursoAluno;
+        this.opcaoCodigo = opcaoCodigo;
 
     }
 
@@ -31,12 +31,12 @@ public class Resposta implements Serializable {
         this.dia = dia;
     }
 
-    public int getPergcode() {
-        return pergcode;
+    public int getPerguntaCodigo() {
+        return perguntaCodigo;
     }
 
-    public void setPergcode(int pergcode) {
-        this.pergcode = pergcode;
+    public void setPerguntaCodigo(int perguntaCodigo) {
+        this.perguntaCodigo = perguntaCodigo;
     }
 
     public String getMatricula() {
@@ -47,28 +47,28 @@ public class Resposta implements Serializable {
         this.matricula = matricula;
     }
 
-    public String getCursoaluno() {
-        return cursoaluno;
+    public String getCursoAluno() {
+        return cursoAluno;
     }
 
-    public void setCursoaluno(String cursoaluno) {
-        this.cursoaluno = cursoaluno;
+    public void setCursoAluno(String cursoAluno) {
+        this.cursoAluno = cursoAluno;
     }
 
-    public String getOpcaocode() {
-        return opcaocode;
+    public String getOpcaoCodigo() {
+        return opcaoCodigo;
     }
 
-    public void setOpcaocode(String opcaocode) {
-        this.opcaocode = opcaocode;
+    public void setOpcaoCodigo(String opcaoCodigo) {
+        this.opcaoCodigo = opcaoCodigo;
     }
 
     @Override
     public String toString() {
         return "Dia da prova: " + dia + ". \n" +
-                "Código da pergunta: " + pergcode + ". \n" +
+                "Código da pergunta: " + perguntaCodigo + ". \n" +
                 "Matrícula do aluno: "  + matricula + ". \n" +
-                "Curso do Aluno: " + cursoaluno + ". \n" +
-                "Opção selecionada: " + opcaocode + ". ";
+                "Curso do Aluno: " + cursoAluno + ". \n" +
+                "Opção selecionada: " + opcaoCodigo + ". ";
     }
 }

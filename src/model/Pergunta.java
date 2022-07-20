@@ -9,66 +9,66 @@ public class Pergunta implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String cursocode;
-    private String cursoname;
-    private int perguntacode;
-    private String perguntadesc;
-    private List <String> opcoesRespondidas = new ArrayList<>();
+    private String cursoCodigo;
+    private String cursoNome;
+    private int perguntaCodigo;
+    private String perguntaDesc;
+    private List <Opcao> opcoesRespondidas = new ArrayList<>();
 
-    public Pergunta(String cursocode, String cursoname, int perguntacode, String perguntadesc) {
+    public Pergunta(String cursoCodigo, String cursoNome, int perguntaCodigo, String perguntaDesc) {
         super();
-        this.cursocode = cursocode;
-        this.cursoname = cursoname;
-        this.perguntacode = perguntacode;
-        this.perguntadesc = perguntadesc;
+        this.cursoCodigo = cursoCodigo;
+        this.cursoNome = cursoNome;
+        this.perguntaCodigo = perguntaCodigo;
+        this.perguntaDesc = perguntaDesc;
     }
 
-    public String getCursocode() {
-        return cursocode;
+    public String getCursoCodigo() {
+        return cursoCodigo;
     }
 
-    public void setCursocode(String cursocode) {
-        this.cursocode = cursocode;
+    public void setCursoCodigo(String cursoCodigo) {
+        this.cursoCodigo = cursoCodigo;
     }
 
-    public String getCursoname() {
-        return cursoname;
+    public String getCursoNome() {
+        return cursoNome;
     }
 
-    public void setCursoname(String cursoname) {
-        this.cursoname = cursoname;
+    public void setCursoNome(String cursoNome) {
+        this.cursoNome = cursoNome;
     }
 
-    public int getPerguntacode() {
-        return perguntacode;
+    public int getPerguntaCodigo() {
+        return perguntaCodigo;
     }
 
-    public void setPerguntacode(int perguntacode) {
-        this.perguntacode = perguntacode;
+    public void setPerguntaCodigo(int perguntaCodigo) {
+        this.perguntaCodigo = perguntaCodigo;
     }
 
-    public String getPerguntadesc() {
-        return perguntadesc;
+    public String getPerguntaDesc() {
+        return perguntaDesc;
     }
 
-    public void setPerguntadesc(String perguntadesc) {
-        this.perguntadesc = perguntadesc;
+    public void setPerguntaDesc(String perguntaDesc) {
+        this.perguntaDesc = perguntaDesc;
     }
 
-    public List<String> getOpcoesRespondidas() {
+    public List<Opcao> getOpcoesRespondidas() {
         return opcoesRespondidas;
     }
 
-    public void setOpcoesRespondidas(List<String> opcoesRespondidas) {
+    public void setOpcoesRespondidas(List<Opcao> opcoesRespondidas) {
         this.opcoesRespondidas = opcoesRespondidas;
     }
 
     @Override
     public String toString() {
-        return "Código do curso: " + cursocode + ". \n" +
-                "Nome do curso: " + cursoname + ". \n" +
-                "Código da pergunta: " + perguntacode + ". \n" +
-                "Descrição da pergunta: " + perguntadesc + ". \n" +
+        return "Código do curso: " + cursoCodigo + ". \n" +
+                "Nome do curso: " + cursoNome + ". \n" +
+                "Código da pergunta: " + perguntaCodigo + ". \n" +
+                "Descrição da pergunta: " + perguntaDesc + ". \n" +
                 "Lista de respostas: " + opcoesRespondidas;
     }
 }

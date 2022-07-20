@@ -8,45 +8,51 @@ public class Opcao implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private int codeperg;
-    private String opcaomarcada;
-    private String opcaodesc;
+    private int perguntaCodigo;
+    private String opcaoMarcada;
+    private String opcaoDesc;
 
-    public Opcao(int codeperg, String opcaomarcada, String opcaodesc) {
+    public Opcao(int perguntaCodigo, String opcaoMarcada, String opcaoDesc) {
 
-        this.codeperg = codeperg;
-        this.opcaomarcada = opcaomarcada;
-        this.opcaodesc = opcaodesc;
+        this.perguntaCodigo = perguntaCodigo;
+        this.opcaoMarcada = opcaoMarcada;
+        this.opcaoDesc = opcaoDesc;
+    }
+    public Opcao(int perguntaCodigo, String opcaoMarcada) {
+
+        this.perguntaCodigo = perguntaCodigo;
+        this.opcaoMarcada = opcaoMarcada;
     }
 
-    public int getCodeperg() {
-        return codeperg;
+    public int getPerguntaCodigo() {
+        return perguntaCodigo;
     }
 
-    public void setCodeperg(int codeperg) {
-        this.codeperg = codeperg;
+    public void setPerguntaCodigo(int perguntaCodigo) {
+        this.perguntaCodigo = perguntaCodigo;
     }
 
-    public String getOpcaomarcada() {
-        return opcaomarcada;
+    public String getOpcaoMarcada() {
+        return opcaoMarcada;
     }
 
-    public void setOpcaomarcada(String opcaomarcada) {
-        this.opcaomarcada = opcaomarcada;
+    public void setOpcaoMarcada(String opcaoMarcada) {
+        this.opcaoMarcada = opcaoMarcada;
     }
 
-    public String getOpcaodesc() {
-        return opcaodesc;
+    public String getOpcaoDesc() {
+        return opcaoDesc;
     }
 
-    public void setOpcaodesc(String opcaodesc) {
-        this.opcaodesc = opcaodesc;
+    public void setOpcaoDesc(String opcaoDesc) {
+        this.opcaoDesc = opcaoDesc;
     }
 
     @Override
     public String toString() {
-        return  "Código da pergunta: " + codeperg + ". " +
-                "Opcão escolhida: " + opcaomarcada + ". " +
-                "Descrição da opção: " + opcaodesc + ". ";
+        return  "Código da pergunta: " + perguntaCodigo + ". " +
+                "Opcão escolhida: " + opcaoMarcada + ". " +
+                "Descrição da opção: " + opcaoDesc + ". ";
     }
+
 }
