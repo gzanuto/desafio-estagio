@@ -23,6 +23,25 @@ public class Pergunta implements Serializable {
         this.perguntaDesc = perguntaDesc;
     }
 
+    public void incluirRespostasNasPerguntas(List<Resposta> listRespostas, List<Opcao> listOpcoes) {
+
+        for (Resposta r : listRespostas) {
+
+
+            if (r.getOpcaoCodigo().equals("Não Respondida") && r.getPerguntaCodigo() == this.getPerguntaCodigo()) {
+                this.getOpcoesRespondidas().add(new Opcao(this.getPerguntaCodigo(), r.getOpcaoCodigo()));
+            }
+            if (r.getPerguntaCodigo() == this.getPerguntaCodigo()) {
+                this.getAlunosParticipantes().add(new Aluno(r.getMatricula(), r.getCursoAluno()));
+                for (Opcao o : listOpcoes) {
+                    if (o.getPerguntaCodigo() == r.getPerguntaCodigo() && o.getOpcaoMarcada().equals(r.getOpcaoCodigo())) {
+                        this.getOpcoesRespondidas().add(o);
+                    }
+                }
+            }
+        }
+    }
+
     public String getCursoCodigo() {
         return cursoCodigo;
     }

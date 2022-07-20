@@ -20,14 +20,17 @@ public class Apresentacao {
         List<Opcao> listOpcoes = reader.readOpcao();
 
         Set<Curso> cursos = getCursos(listPerguntas);
-        preencherPerguntasDeCursos(cursos, listPerguntas);
-        incluirRespostasNasPerguntas(listRespostas, cursos, listOpcoes);
 
         for(Curso c : cursos) {
-            HashMap<Integer, HashMap<String, Double>> porcentagensRespostasPerguntasPorCurso = obterPorcentagens(c);
+
+            c.preencherPerguntas(listPerguntas);
+
             System.out.println(c.getCodigo() + " - " + c.getNome());
             System.out.println("\n" + "Perguntas:");
             for(Pergunta p : c.getListPerguntas()){
+
+                p.incluirRespostasNasPerguntas(listRespostas, listOpcoes);
+                HashMap<Integer, HashMap<String, Double>> porcentagensRespostasPerguntasPorCurso = c.obterPorcentagens();
                 System.out.printf("\n" + p.getPerguntaCodigo() + " - " + p.getPerguntaDesc() + "\n");
                 System.out.println("\nTotal de entrevistados: " + p.getOpcoesRespondidas().size());
                 int respostasCurso = 0;
@@ -56,7 +59,6 @@ public class Apresentacao {
 
                             System.out.println(opcaoMarcada + " - " + o.getOpcaoDesc()
                                     + " ".repeat(resultadoCabecalho.length() - resultadoPorcentagens.length()) + "| " + porcentagem(porcentagemOpcaoMarcada.get(opcaoMarcada))
-//                                    + "\n"
                             );
                         }
                     }
@@ -76,71 +78,6 @@ public class Apresentacao {
 
     private String porcentagem(double v) {
         return String.format("%.0f%%",100*v);
-    }
-
-    private HashMap<Integer, HashMap<String, Double>> obterPorcentagens(Curso curso) {
-
-        HashMap<Integer, HashMap<String, Double>> perguntasPorCurso = new HashMap<>();
-
-        for (Pergunta p : curso.getListPerguntas()){
-            HashMap<String, Double> porcentagensPorOpcao = new HashMap<>();
-            perguntasPorCurso.put(p.getPerguntaCodigo(), porcentagensPorOpcao);
-            int totalRespostas = p.getOpcoesRespondidas().size();
-
-            Double totalOpcaoMarcada;
-            for(Opcao o : p.getOpcoesRespondidas()) {
-
-                Double porcentagemAtual = perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada()) ?
-                        perguntasPorCurso.get(p.getPerguntaCodigo()).get(o.getOpcaoMarcada()) : 0.0;
-
-                if(porcentagemAtual > 0){
-                    totalOpcaoMarcada = porcentagemAtual * totalRespostas;
-                    totalOpcaoMarcada ++;
-                } else {
-                    totalOpcaoMarcada = 1.0;
-                }
-
-                if(!perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada())){
-                    perguntasPorCurso.get(p.getPerguntaCodigo()).put(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
-                }
-                else {
-                    perguntasPorCurso.get(p.getPerguntaCodigo()).replace(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
-                }
-            }
-        }
-        return perguntasPorCurso;
-    }
-
-    private void incluirRespostasNasPerguntas(List<Resposta> listRespostas, Set<Curso> cursos, List<Opcao> listOpcoes) {
-        for (Curso c : cursos) {
-            for(Pergunta p : c.getListPerguntas()) {
-                for(Resposta r : listRespostas){
-
-
-                    if(r.getOpcaoCodigo().equals("Não Respondida") && r.getPerguntaCodigo() == p.getPerguntaCodigo()) {
-                        p.getOpcoesRespondidas().add(new Opcao(p.getPerguntaCodigo(), r.getOpcaoCodigo()));
-                    }
-                    if (r.getPerguntaCodigo() == p.getPerguntaCodigo()){
-                        p.getAlunosParticipantes().add(new Aluno(r.getMatricula(), r.getCursoAluno()));
-                        for(Opcao o: listOpcoes) {
-                            if(o.getPerguntaCodigo() == r.getPerguntaCodigo() && o.getOpcaoMarcada().equals(r.getOpcaoCodigo())) {
-                                p.getOpcoesRespondidas().add(o);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void preencherPerguntasDeCursos(Set<Curso> cursos, List<Pergunta> listPerguntas) {
-        for (Curso c: cursos) {
-            for (Pergunta p : listPerguntas) {
-                if (p.getCursoCodigo().equals(c.getCodigo())) {
-                    c.getListPerguntas().add(p);
-                }
-            }
-        }
     }
 
     private Set<Curso> getCursos(List<Pergunta> perguntas) {

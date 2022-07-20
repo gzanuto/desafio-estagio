@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class Curso {
 
@@ -12,6 +14,47 @@ public class Curso {
     public Curso(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
+    }
+
+    public HashMap<Integer, HashMap<String, Double>> obterPorcentagens() {
+
+        HashMap<Integer, HashMap<String, Double>> perguntasPorCurso = new HashMap<>();
+
+        for (Pergunta p : this.getListPerguntas()){
+            HashMap<String, Double> porcentagensPorOpcao = new HashMap<>();
+            perguntasPorCurso.put(p.getPerguntaCodigo(), porcentagensPorOpcao);
+            int totalRespostas = p.getOpcoesRespondidas().size();
+
+            Double totalOpcaoMarcada;
+            for(Opcao o : p.getOpcoesRespondidas()) {
+
+                Double porcentagemAtual = perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada()) ?
+                        perguntasPorCurso.get(p.getPerguntaCodigo()).get(o.getOpcaoMarcada()) : 0.0;
+
+                if(porcentagemAtual > 0){
+                    totalOpcaoMarcada = porcentagemAtual * totalRespostas;
+                    totalOpcaoMarcada ++;
+                } else {
+                    totalOpcaoMarcada = 1.0;
+                }
+
+                if(!perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada())){
+                    perguntasPorCurso.get(p.getPerguntaCodigo()).put(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
+                }
+                else {
+                    perguntasPorCurso.get(p.getPerguntaCodigo()).replace(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
+                }
+            }
+        }
+        return perguntasPorCurso;
+    }
+
+    public void preencherPerguntas(List<Pergunta> listPerguntas) {
+        for (Pergunta p : listPerguntas) {
+            if (p.getCursoCodigo().equals(this.getCodigo())) {
+                this.getListPerguntas().add(p);
+            }
+        }
     }
 
     public List<Pergunta> getListPerguntas() {
@@ -29,6 +72,8 @@ public class Curso {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+
 
     public String getNome() {
         return nome;
