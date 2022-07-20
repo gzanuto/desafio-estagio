@@ -4,9 +4,8 @@ import model.Opcao;
 import model.Pergunta;
 import model.Resposta;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class Reader {
 
         List<Pergunta> list = new ArrayList<Pergunta>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_PERGUNTAS))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_PERGUNTAS, StandardCharsets.UTF_8))) {
 
             String line = br.readLine();
             line = br.readLine();
@@ -65,7 +64,7 @@ public class Reader {
 
         List<Resposta> list = new ArrayList<Resposta>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_RESPOSTAS))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_RESPOSTAS, StandardCharsets.UTF_8))) {
 
             String line = br.readLine();
             line = br.readLine();
@@ -99,7 +98,7 @@ public class Reader {
 
         List<Opcao> list = new ArrayList<Opcao>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_OPCOES))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_OPCOES, StandardCharsets.UTF_8))) {
 
             String line = br.readLine();
             line = br.readLine();

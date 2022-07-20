@@ -27,14 +27,13 @@ public class Pergunta implements Serializable {
 
         for (Resposta r : listRespostas) {
 
-
             if (r.getOpcaoCodigo().equals("Não Respondida") && r.getPerguntaCodigo() == this.getPerguntaCodigo()) {
                 this.getOpcoesRespondidas().add(new Opcao(this.getPerguntaCodigo(), r.getOpcaoCodigo()));
             }
             if (r.getPerguntaCodigo() == this.getPerguntaCodigo()) {
                 this.getAlunosParticipantes().add(new Aluno(r.getMatricula(), r.getCursoAluno()));
                 for (Opcao o : listOpcoes) {
-                    if (o.getPerguntaCodigo() == r.getPerguntaCodigo() && o.getOpcaoMarcada().equals(r.getOpcaoCodigo())) {
+                    if (o.getPerguntaCodigo() == r.getPerguntaCodigo() && o.getOpcaoCodigo().equals(r.getOpcaoCodigo())) {
                         this.getOpcoesRespondidas().add(o);
                     }
                 }

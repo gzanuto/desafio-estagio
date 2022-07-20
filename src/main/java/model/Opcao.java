@@ -9,19 +9,19 @@ public class Opcao implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int perguntaCodigo;
-    private String opcaoMarcada;
+    private String opcaoCodigo;
     private String opcaoDesc;
 
-    public Opcao(int perguntaCodigo, String opcaoMarcada, String opcaoDesc) {
+    public Opcao(int perguntaCodigo, String opcaoCodigo, String opcaoDesc) {
 
         this.perguntaCodigo = perguntaCodigo;
-        this.opcaoMarcada = opcaoMarcada;
+        this.opcaoCodigo = opcaoCodigo;
         this.opcaoDesc = opcaoDesc;
     }
-    public Opcao(int perguntaCodigo, String opcaoMarcada) {
+    public Opcao(int perguntaCodigo, String opcaoCodigo) {
 
         this.perguntaCodigo = perguntaCodigo;
-        this.opcaoMarcada = opcaoMarcada;
+        this.opcaoCodigo = opcaoCodigo;
     }
 
     public int getPerguntaCodigo() {
@@ -32,12 +32,12 @@ public class Opcao implements Serializable {
         this.perguntaCodigo = perguntaCodigo;
     }
 
-    public String getOpcaoMarcada() {
-        return opcaoMarcada;
+    public String getOpcaoCodigo() {
+        return opcaoCodigo;
     }
 
-    public void setOpcaoMarcada(String opcaoMarcada) {
-        this.opcaoMarcada = opcaoMarcada;
+    public void setOpcaoCodigo(String opcaoCodigo) {
+        this.opcaoCodigo = opcaoCodigo;
     }
 
     public String getOpcaoDesc() {
@@ -51,7 +51,7 @@ public class Opcao implements Serializable {
     @Override
     public String toString() {
         return  "Código da pergunta: " + perguntaCodigo + ". " +
-                "Opcão escolhida: " + opcaoMarcada + ". " +
+                "Opcão escolhida: " + opcaoCodigo + ". " +
                 "Descrição da opção: " + opcaoDesc + ". ";
     }
 

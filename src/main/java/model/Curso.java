@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class Curso {
 
@@ -28,8 +27,8 @@ public class Curso {
             Double totalOpcaoMarcada;
             for(Opcao o : p.getOpcoesRespondidas()) {
 
-                Double porcentagemAtual = perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada()) ?
-                        perguntasPorCurso.get(p.getPerguntaCodigo()).get(o.getOpcaoMarcada()) : 0.0;
+                Double porcentagemAtual = perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoCodigo()) ?
+                        perguntasPorCurso.get(p.getPerguntaCodigo()).get(o.getOpcaoCodigo()) : 0.0;
 
                 if(porcentagemAtual > 0){
                     totalOpcaoMarcada = porcentagemAtual * totalRespostas;
@@ -38,11 +37,11 @@ public class Curso {
                     totalOpcaoMarcada = 1.0;
                 }
 
-                if(!perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoMarcada())){
-                    perguntasPorCurso.get(p.getPerguntaCodigo()).put(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
+                if(!perguntasPorCurso.get(p.getPerguntaCodigo()).containsKey(o.getOpcaoCodigo())){
+                    perguntasPorCurso.get(p.getPerguntaCodigo()).put(o.getOpcaoCodigo(), totalOpcaoMarcada/totalRespostas);
                 }
                 else {
-                    perguntasPorCurso.get(p.getPerguntaCodigo()).replace(o.getOpcaoMarcada(), totalOpcaoMarcada/totalRespostas);
+                    perguntasPorCurso.get(p.getPerguntaCodigo()).replace(o.getOpcaoCodigo(), totalOpcaoMarcada/totalRespostas);
                 }
             }
         }
