@@ -17,7 +17,7 @@
 ---
 
 O projeto é escrito em Java 17, usando o Maven como gerenciador de dependências.
-Com o Maven, fazemos o build e a execução do código, utilizando o seguinte comando:
+Com o Maven, fazemos o build e a execução do código, utilizando o seguinte comando no terminal:
 <br>```mvn clean compile exec:java```
 
 O resultado da enquete estará em um arquivo de texto **(resultadoEnquete.txt)** dentro da pasta **target** gerada após a execução do comando acima.
