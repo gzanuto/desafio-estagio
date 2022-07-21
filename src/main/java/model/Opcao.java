@@ -1,11 +1,7 @@
 package model;
 
-import java.io.Serial;
-import java.io.Serializable;
+public class Opcao {
 
-public class Opcao implements Serializable {
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private int perguntaCodigo;
